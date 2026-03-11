@@ -42,7 +42,7 @@ main div {
 
 /* Dice Component */
 
-.dice {
+.dice-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -70,6 +70,7 @@ main div {
   font-size: 20px;
   border-radius: 4px;
   border-style: solid;
+  cursor: pointer;
   border-width: 0;
   font-weight: bold;
   padding: 10px 30px;
