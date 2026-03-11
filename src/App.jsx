@@ -1,14 +1,21 @@
 import Dice from "./components/dice";
 import { useState } from "react";
+import Button from "@mui/material/Button";
 
 function generateAllNewDice() {
   let newDice = [];
   for (let i = 0; i < 10; i++) {
     let randomNumber = Math.floor(Math.random() * 6) + 1;
-    newDice.push(randomNumber);
+    let objectDice = {
+      value: randomNumber,
+      isHeld: false,
+    };
+    newDice.push(objectDice);
   }
+
   return newDice;
 }
+console.log(generateAllNewDice());
 
 export default function App() {
   const [diceComponent, setDiceComponent] = useState(generateAllNewDice());
@@ -18,7 +25,7 @@ export default function App() {
   }
 
   const diceElements = diceComponent.map((dice, index) => {
-    return <Dice key={index} value={dice}></Dice>;
+    return <Dice key={index} value={dice.value}></Dice>;
   });
   return (
     <>
@@ -30,9 +37,19 @@ export default function App() {
         </div>
         <div className="dice-container">{diceElements}</div>
         <div>
-          <button onClick={rollDice} className="roll">
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#5035ff",
+              fontFamily: "Karla",
+              padding: "5px 25px",
+              letterSpacing: "0%",
+            }}
+            onClick={rollDice}
+            className="roll"
+          >
             Roll
-          </button>
+          </Button>
         </div>
       </main>
     </>
