@@ -1,20 +1,23 @@
 import Dice from "./components/dice";
 import { useState } from "react";
 import Button from "@mui/material/Button";
+import { nanoid } from "nanoid";
 
 function generateAllNewDice() {
   let newDice = [];
   for (let i = 0; i < 10; i++) {
     let randomNumber = Math.floor(Math.random() * 6) + 1;
     let objectDice = {
+      id: nanoid(),
       value: randomNumber,
-      isHeld: false,
+      isHeld: true,
     };
     newDice.push(objectDice);
   }
 
   return newDice;
 }
+
 console.log(generateAllNewDice());
 
 export default function App() {
@@ -24,9 +27,10 @@ export default function App() {
     setDiceComponent(generateAllNewDice());
   }
 
-  const diceElements = diceComponent.map((dice, index) => {
-    return <Dice key={index} value={dice.value}></Dice>;
+  const diceElements = diceComponent.map((dice) => {
+    return <Dice isHeld={dice.isHeld} key={dice.id} value={dice.value}></Dice>;
   });
+
   return (
     <>
       <main>
@@ -40,7 +44,7 @@ export default function App() {
           <Button
             variant="contained"
             sx={{
-              backgroundColor: "#5035ff",
+              backgroundColor: "#5035FF",
               fontFamily: "Karla",
               padding: "5px 25px",
               letterSpacing: "0%",
