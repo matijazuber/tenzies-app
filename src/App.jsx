@@ -27,8 +27,23 @@ export default function App() {
     setDiceComponent(generateAllNewDice());
   }
 
+  function toggleHold(id) {
+    setDiceComponent((oldDice) =>
+      oldDice.map((die) =>
+        die.id === id ? { ...die, isHeld: !die.isHeld } : die,
+      ),
+    );
+  }
+
   const diceElements = diceComponent.map((dice) => {
-    return <Dice isHeld={dice.isHeld} key={dice.id} value={dice.value}></Dice>;
+    return (
+      <Dice
+        holdDice={() => toggleHold(dice.id)}
+        isHeld={dice.isHeld}
+        key={dice.id}
+        value={dice.value}
+      ></Dice>
+    );
   });
 
   return (

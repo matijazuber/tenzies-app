@@ -4,6 +4,7 @@ export default function Dice(props) {
   return (
     <>
       <Button
+        onClick={props.holdDice}
         sx={{
           backgroundColor: props.isHeld ? "#59E391" : "white",
           fontFamily: "Karla",
